@@ -14,7 +14,7 @@ a {
     color: azure;
 }
 
-.signUpWrapper, .loginWrapper {
+.signUpWrapper, .loginWrapper, .homeWrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,6 +33,10 @@ a {
     margin-bottom: 16px;
 }
 
+.homeTitle {
+    font-size: 26px;
+}
+
 .formWrapper {
     display: flex;
     flex-direction: column;
@@ -49,6 +53,18 @@ a {
 .formSubmit {
     width: 68px;
     height: 22px;
+}
+
+.formPost {
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.postInput {
+    width: 400px;
+    min-height: 48px;
+    height: auto;
 }
 
 
