@@ -45,26 +45,27 @@ if (isset($submit)) {
 require('../partials/header.php');
 ?>
 
-
-<div class="loginWrapper">
-    <h1 class="loginTitle">Log in</h1>
-    <form class="formWrapper" method="POST">
-        <div class="formUsername">
-            <input class="formInput" type="text" name="username" placeholder="Username">
+<div class="wrapper">
+    <div class="loginWrapper">
+        <h1 class="loginTitle">Log in</h1>
+        <form class="formWrapper" method="POST">
+            <div class="formUsername">
+                <input class="formInput" type="text" name="username" placeholder="Username">
+            </div>
+            <div class="formPassword">
+                <input class="formInput" type="password" name="password" placeholder="Password">
+            </div>
+            <input class="formSubmit, formInput" type="submit" value="Log in" name="submit">
+        </form>
+        <p><?php if (isset($loginError)) {
+                echo $loginError;
+            } else if (isset($errorUsername)) {
+                echo $errorUsername;
+            } ?>
+        </p>
+        <div>
+            <a href="./signup.php">Don't have an account? Sign in</a>
         </div>
-        <div class="formPassword">
-            <input class="formInput" type="password" name="password" placeholder="Password">
-        </div>
-        <input class="formSubmit, formInput" type="submit" value="Log in" name="submit">
-    </form>
-    <p><?php if (isset($loginError)) {
-            echo $loginError;
-        } else if (isset($errorUsername)) {
-            echo $errorUsername;
-        } ?>
-    </p>
-    <div>
-        <a href="./signup.php">Don't have an account? Sign in</a>
     </div>
 </div>
 <?php

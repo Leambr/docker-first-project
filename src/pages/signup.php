@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('../includes/pdo.php');
 
 $submit = filter_input(INPUT_POST, 'submit');
@@ -17,10 +18,17 @@ if (isset($submit)) {
                 ":username" => $username,
                 ":password" => $hashedPassword,
             ]);
+
+            $id = $pdo->prepare("SELECT id FROM users WHERE username = '$username'");
+            $id->execute();
+            $id = $id->fetch()['id'];
+
+            $_SESSION['username'] = $username;
+            $_SESSION['id'] = $id;
             header("Location: ./home.php");
         }
     } else {
-        echo "You need to a enter a username and a password";
+        $loginError = 'You need to a enter a username and a password';
     }
 }
 ?>
@@ -29,23 +37,27 @@ if (isset($submit)) {
 require('../partials/header.php');
 ?>
 
-<div class="signUpWrapper">
-    <h1 class="signupTitle">Sign up</h1>
-    <form class="formWrapper" method="POST">
-        <div class="formUsername">
-            <input class="formInput" type="text" name="username" placeholder="Username">
+<div class="wrapper">
+    <div class="signUpWrapper">
+        <h1 class="signupTitle">Sign up</h1>
+        <form class="formWrapper" method="POST">
+            <div class="formUsername">
+                <input class="formInput" type="text" name="username" placeholder="Username">
+            </div>
+            <div class="formPassword">
+                <input class="formInput" type="password" name="password" placeholder="Password">
+            </div>
+            <input class="formSubmit, formInput" type="submit" value="Sign in" name="submit">
+        </form>
+        <p><?php if (isset($errorUsername)) {
+                echo $errorUsername;
+            } else if (isset($loginError)) {
+                echo $loginError;
+            } ?>
+        </p>
+        <div>
+            <a href="./login.php">Already have an account? Log in</a>
         </div>
-        <div class="formPassword">
-            <input class="formInput" type="password" name="password" placeholder="Password">
-        </div>
-        <input class="formSubmit, formInput" type="submit" value="Sign in" name="submit">
-    </form>
-    <p><?php if (isset($errorUsername)) {
-            echo $errorUsername;
-        } ?>
-    </p>
-    <div>
-        <a href="./login.php">Already have an account? Log in</a>
     </div>
 </div>
 <?php
