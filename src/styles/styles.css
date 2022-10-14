@@ -14,19 +14,26 @@ a {
     color: azure;
 }
 
-.signUpWrapper, .loginWrapper, .homeWrapper {
+.wrapper {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUpWrapper, .loginWrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 400px;
     height: 200px;
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%); */
 }
 
 .signupTitle, .loginTitle, .homeTitle {
@@ -58,13 +65,45 @@ a {
 .formPost {
     display: flex;
     flex-direction: column;
-    gap: 12px
+    gap: 12px;
+    margin-bottom: 32px;
 }
 
 .postInput {
     width: 400px;
     min-height: 48px;
     height: auto;
+}
+
+.homeWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: auto;
+    margin: 36px 0 0 36px;
+}
+
+.postsWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 12px;
+}
+
+.publishedPost {
+    width: 100%;
+    min-height: 48px;
+    height: auto;
+    background-color: #fff;
+    border-radius: 4px;
+    color: black;
+    padding: 8px;
+}
+
+.username {
+    font-weight: 700;
 }
 
 
