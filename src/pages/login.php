@@ -26,11 +26,18 @@ if (isset($submit)) {
                 $id->execute();
                 $id = $id->fetch()['id'];
 
+                $admin = $pdo->prepare("SELECT is_admin FROM users WHERE username = '$username'");
+                $admin->execute();
+                $admin = $admin->fetch()['is_admin'];
+
+
+
 
                 // faire les user permission
 
                 $_SESSION['username'] = $username;
                 $_SESSION['id'] = $id;
+                $_SESSION['admin'] = $admin;
                 header("Location: ./home.php");
             };
         }

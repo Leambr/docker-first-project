@@ -106,5 +106,12 @@ a {
     font-weight: 700;
 }
 
+.deletePost {
+    color: black;
+}
 
+.sessionType {
+    font-weight: 700;
+    margin-bottom: 24px;
+}
 

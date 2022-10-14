@@ -29,6 +29,14 @@ require('../partials/header.php');
 <div class="wrapper">
     <div class="homeWrapper">
         <h1 class="homeTitle">Welcome on your profile <?= $_SESSION['username'] ?></h1>
+
+        <?php if ($_SESSION['admin'] === 1) { ?>
+            <p class="sessionType">Moderator</p>
+        <?php } else if ($_SESSION['admin'] === 0) { ?>
+            <p class="sessionType">User</p>
+        <?php } ?>
+
+
         <form class="formPost" method="POST">
             <input class="postInput" type="text" name="post" placeholder="Write your post...">
             <input type="submit" value="Publish" name="submit">
@@ -49,6 +57,12 @@ require('../partials/header.php');
                     <p>
                         <?= $post["content"] ?>
                     </p>
+
+                    <?php if ($_SESSION['admin'] === 1) { ?>
+                        <a class="deletePost" href="../includes/delete.inc.php?id=<?= $post['id'] ?>">Delete</a>
+                    <?php } else if ($_SESSION['id'] === $post['user_id']) { ?>
+                        <a class="deletePost" href="../includes/delete.inc.php?id=<?= $post['id'] ?>">Delete</a>
+                    <?php } ?>
                 </div>
             <?php } ?>
         </div>
