@@ -14,8 +14,8 @@ services:
       image: mariadb
       restart: on-failure
       volumes:
-        #- data:/var/lib/mysql
         - ./database/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+        - db_data:/var/lib/mysql
       environment:
         MYSQL_DATABASE: php_db
         MYSQL_ROOT_PASSWORD: password
@@ -26,8 +26,8 @@ services:
       ports:
           - '1212:8080'
 
-#volumes:
-#  data:
+volumes:
+  db_data:
 
   
 
