@@ -9,8 +9,7 @@ CREATE TABLE users
 CREATE TABLE posts
 (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    content TEXT NOT NULL,
-    published_at DATETIME,
+    content VARCHAR(255) NOT NULL,
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 )
