@@ -21,9 +21,16 @@ if (isset($submit)) {
                 $username = $pdo->prepare("SELECT username FROM users WHERE username = '$username'");
                 $username->execute();
                 $username = $username->fetch()['username'];
+
+                $id = $pdo->prepare("SELECT id FROM users WHERE username = '$username'");
+                $id->execute();
+                $id = $id->fetch()['id'];
+
+
                 // faire les user permission
 
                 $_SESSION['username'] = $username;
+                $_SESSION['id'] = $id;
                 header("Location: ./home.php");
             };
         }
