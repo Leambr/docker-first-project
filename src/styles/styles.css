@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1F1F1F;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: azure;
+}
+
+a {
+    color: azure;
+}
+
+.signUpWrapper, .loginWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.signupTitle, .loginTitle, .homeTitle {
+    margin-bottom: 16px;
+}
+
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.formInput {
+    width: 300px;
+    height: 26px;
+}
+
+.formSubmit {
+    width: 68px;
+    height: 22px;
+}
+
+
+

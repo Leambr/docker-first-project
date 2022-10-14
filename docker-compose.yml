@@ -1,0 +1,34 @@
+version: "3.8"
+
+services: 
+    first-php:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports: 
+        - "8796:80"
+      volumes:
+        - ./src:/var/www/html
+      
+    database:
+      image: mariadb
+      restart: on-failure
+      volumes:
+        #- data:/var/lib/mysql
+        - ./database/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      environment:
+        MYSQL_DATABASE: php_db
+        MYSQL_ROOT_PASSWORD: password
+
+    phpmyadmin:
+      image: adminer
+      restart: always
+      ports:
+          - '1212:8080'
+
+#volumes:
+#  data:
+
+  
+
+
