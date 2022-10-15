@@ -6,7 +6,7 @@ require('../includes/pdo.php');
 $submit = filter_input(INPUT_POST, 'submit');
 $post = filter_input(INPUT_POST, 'post');
 $user_id = $_SESSION['id'];
-
+$userStatus = isset($_POST['userStatus']) ? intval($_POST['userStatus']) : false;
 
 if (isset($submit)) {
     if (!empty($post)) {
@@ -17,6 +17,28 @@ if (isset($submit)) {
         ]);
     }
 }
+
+if ($userStatus === 0) {
+    $changeUserStatus = $pdo->prepare("UPDATE users SET is_admin = :userStatus WHERE id = :user_id");
+    $changeUserStatus->execute([
+        ":user_id" => $_SESSION['id'],
+        ":userStatus" => $userStatus
+    ]);
+} else if ($userStatus === 1) {
+    $changeUserStatus = $pdo->prepare("UPDATE users SET is_admin = :userStatus WHERE id = :user_id");
+    $changeUserStatus->execute([
+        ":user_id" => $_SESSION['id'],
+        ":userStatus" => $userStatus
+    ]);
+}
+
+$admin = $pdo->prepare("SELECT is_admin FROM users WHERE username = :username");
+$admin->execute([
+    ":username" => $_SESSION['username']
+]);
+$admin = $admin->fetch()['is_admin'];
+
+$_SESSION['admin'] = $admin;
 ?>
 
 <?php
@@ -24,11 +46,21 @@ require('../partials/header.php');
 ?>
 
 
-<a href="../includes/logout.inc.php">Log out</a>
+<a class="logout" href="../includes/logout.inc.php">Log out</a>
 
 <div class="wrapper">
     <div class="homeWrapper">
         <h1 class="homeTitle">Welcome on your profile <?= $_SESSION['username'] ?></h1>
+
+        <div class="userStatus">
+            <form method="POST">
+                <select name="userStatus">
+                    <option value="0" selected>User</option>
+                    <option value="1">Moderator</option>
+                </select>
+                <input type="submit" value="Confirm role change" class="roleChange">
+            </form>
+        </div>
 
         <?php if ($_SESSION['admin'] === 1) { ?>
             <p class="sessionType">Moderator</p>

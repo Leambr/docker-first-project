@@ -75,6 +75,10 @@ a {
     height: auto;
 }
 
+.logout {
+    margin: 36px;
+}
+
 .homeWrapper {
     display: flex;
     flex-direction: column;
@@ -115,3 +119,6 @@ a {
     margin-bottom: 24px;
 }
 
+.userStatus {
+    margin-bottom: 12px;
+}

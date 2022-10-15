@@ -27,7 +27,7 @@ services:
           - '1212:8080'
 
 volumes:
-  db_data:
+    db_data:
 
   
 
